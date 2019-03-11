@@ -6,7 +6,76 @@
         xmlns:local="clr-namespace:Rank"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="5*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0"
+              Margin="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0"
+                       Text="Chooze search engin"
+                       FontSize="18"
+                       Margin="0,0,0,5"/>
+            <ComboBox Grid.Row="1"
+                      ItemsSource="{Binding SearchEnginesList,Mode=OneWay}"
+                      SelectedItem="{Binding SelectedSearchEngine,Mode=TwoWay}"/>
+
+            <TextBlock Grid.Row="2"
+                       Text="Ghooze a region"
+                       FontSize="18"
+                       Margin="0,10,0,5"/>
+            <ComboBox Grid.Row="3"
+                      ItemsSource="{Binding LocationsList, Mode=OneWay}"
+                      SelectedItem="{Binding SelectedLocation, Mode=TwoWay}"/>
+            <TextBlock Grid.Row="4"
+                       Text="Input your website"
+                       FontSize="18"
+                       Margin="0,10,0,5"/>
+            <TextBox Grid.Row="5"
+                     FontSize="12"
+                     Height="30"
+                     Text="{Binding WebSite, Mode=OneWayToSource}"
+                     VerticalContentAlignment="Center"/>
+            <TextBlock Grid.Row="6"
+                       Text="Input key words"
+                       FontSize="18"
+                       Margin="0,10,0,5"/>
+            <TextBox Grid.Row="7"
+                     AcceptsReturn="True"
+                     TextWrapping="Wrap"
+                     Text="{Binding KeyWords, Mode=TwoWay}"
+                     Height="80"/>
+            <Button Grid.Row="8"
+                    Content="SEND"
+                    FontSize="20"
+                    Height="40"
+                    VerticalAlignment="Bottom"
+                    Command="{Binding SendCommand}"/>
+
+        </Grid>
+        <ListView Grid.Column="1" ItemsSource="{Binding RankInfoList}">
+            <ListView.View>
+                <GridView >
+                    <GridViewColumn Header="KeyWord" DisplayMemberBinding="{Binding Path=KeyWord}" Width="100"  />
+                    <GridViewColumn Header="Search engine" DisplayMemberBinding="{Binding Path=SearchEngine}" Width="100"/>
+                    <GridViewColumn Header="Website" DisplayMemberBinding="{Binding Path=WebSite}" Width="100"/>
+                    <GridViewColumn Header="Position" DisplayMemberBinding="{Binding Path=Position}" Width="100"/>
+                    <GridViewColumn Header="Status" DisplayMemberBinding="{Binding Path=Status}" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </Window>
